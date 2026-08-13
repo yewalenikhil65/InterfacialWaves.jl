@@ -472,7 +472,9 @@ The current viscous interface provides:
 
 The linear stability of viscous gravity–capillary travelling waves uses the
 same Floquet framework as the inviscid case, extended with viscous stress terms
-in both the kinematic and dynamic linearized equations. The Floquet parameter
+in both the kinematic and dynamic linearized equations, following the
+supplementary material of [SheltonMilewskiTrinh2025](@cite).
+The Floquet parameter
 `p ∈ [0, 1]` selects the perturbation class; `Re(σ) > 0` indicates instability.
 
 ```@example viscous_gravity_capillary

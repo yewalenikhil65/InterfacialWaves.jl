@@ -5,7 +5,8 @@ CurrentModule = InterfacialWaves
 # [Gravity–Capillary Waves](@id gravity_capillary_waves)
 
 Gravity–capillary waves use the same periodic conformal collocation
- discretization as the pure-gravity formulation. The unknown surface is sampled
+discretization as the pure-gravity formulation (see supplementary material of [SheltonMilewskiTrinh2025](@cite)).
+The unknown surface is sampled
 on ``\xi\in[-1/2,1/2)`` and the nonlinear state is
 
 ```math
@@ -261,4 +262,11 @@ result = solve(stab)
 println("Eigenvalues: ", length(result.λ))
 println("Max growth rate Re(σ) = ", round(max_growth_rate(result); sigdigits=4))
 println("Unstable? ", is_unstable(result))
+```
+
+## References
+
+```@bibliography
+Pages = ["gravity_capillary.md"]
+Canonical = false
 ```
