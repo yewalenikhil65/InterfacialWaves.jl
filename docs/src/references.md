@@ -9,6 +9,8 @@ Waves* [InterfacialWaves](@cite). The first documented formulation follows the
 Fourier-coefficient equations and continuation strategy of Longuet–Higgins
 [LonguetHiggins1978](@cite). The stability implementation is based on the
 finite-amplitude Stokes-wave stability literature [LonguetHiggins1986](@cite).
+The viscous gravity–capillary formulation follows Shelton, Milewski and Trinh
+[SheltonMilewskiTrinh2025](@cite).
 
 ```@bibliography
 ```

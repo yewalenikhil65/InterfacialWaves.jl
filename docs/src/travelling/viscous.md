@@ -4,7 +4,8 @@ CurrentModule = InterfacialWaves
 
 # [Viscous Gravity–Capillary Waves](@id viscous_gravity_capillary_waves)
 
-The viscous travelling-wave formulation uses the same periodic conformal
+The viscous travelling-wave formulation follows [SheltonMilewskiTrinh2025](@cite)
+and uses the same periodic conformal
 collocation grid as the inviscid gravity–capillary problem, but retains finite
 Reynolds-number corrections and solves for an additional pressure/wind
 coefficient. The state is unpinned and has the form
@@ -491,4 +492,11 @@ result_visc = solve(stab_visc)
 println("Eigenvalues: ", length(result_visc.λ))
 println("Max growth rate Re(σ) = ", round(max_growth_rate(result_visc); sigdigits=4))
 println("Unstable? ", is_unstable(result_visc))
+```
+
+## References
+
+```@bibliography
+Pages = ["viscous.md"]
+Canonical = false
 ```
