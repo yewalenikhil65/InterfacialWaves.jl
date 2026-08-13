@@ -1,4 +1,4 @@
-# InterfacialWaves.jl
+# InterfacialWaves.jl 🌊
 
 [![Docs](https://img.shields.io/badge/docs-stable-blue.svg)](https://yewalenikhil65.github.io/InterfacialWaves.jl/)
 
