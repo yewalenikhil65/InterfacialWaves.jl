@@ -4,39 +4,133 @@
 
 ![Stokes drift animation](docs/src/assets/logo_anim.gif)
 
-A Julia package for computing exact steady travelling-wave solutions and their linear stability.
+A Julia package for computing exact nonlinear steady travelling-wave and standing-wave solutions, and their linear stability, for a range of fluid configurations.
+
+---
 
 ## Wave types
 
-- **Pure gravity** — Longuet–Higgins Fourier-coefficient and conformal-mapping collocation formulations
-- **Gravity–capillary** — fixed-Bond-number target states
-- **Viscous gravity–capillary** — finite-Reynolds-number derived-B and fixed-B formulations
-- **Interfacial** — two-fluid Stokes waves with density ratio ρ₁/ρ₂ < 1
-- **Axisymmetric standing waves** — HOSE boundary-integral method in a cylindrical basin (`AxiStandingWaves`)
+### Travelling waves
+
+| Wave type | Problem | Key parameters | Solver |
+|---|---|---|---|
+| Pure gravity | `GravityProblem` | `N`, `ak` or `ε_max` | `LH()`, `Collocation()` |
+| Gravity–capillary | `GCProblem` | `N`, `B`, `ε_max` | `Collocation()` |
+| Viscous gravity–capillary | `ViscousGCProblem` | `N`, `Re`, `Mo`, `ε_max` | `Collocation()` |
+| Viscous GC fixed-B | `ViscousGCFixedBProblem` | `N`, `Re`, `B`, `ε_max` | `Collocation()` |
+| Two-fluid interfacial | `InterfacialStokesProblem` | `N`, `ρ=ρ₁/ρ₂`, `h_max` | `NewtonRaphson` |
+
+### Standing waves
+
+| Wave type | Module | Key parameters | Method |
+|---|---|---|---|
+| Axisymmetric in cylindrical basin | `InterfacialWaves.AxiStandingWaves` | `R`, `d`, `ν`, `kA` | HOSE boundary integral + Newton shooting |
+
+---
 
 ## Quick start
+
+### Pure gravity — Longuet–Higgins
 
 ```julia
 using InterfacialWaves
 
-# Pure gravity wave at ak = 0.40
 sol = solve(GravityProblem(128; ak=0.40), LH())
 sol.c    # phase speed
-sol.ak   # steepness
-sol.a    # Fourier coefficients
+sol.ak   # steepness ak
+sol.a    # Fourier coefficients [H₀/2, H₁, H₂, ...]
+```
 
-# Linear stability
+### Pure gravity — collocation
+
+```julia
+sol = solve(GravityProblem(256; ε_max=0.9), Collocation())
+sol.Y    # surface elevation Y(ξ)
+sol.F    # Froude number
+sol.kH2  # steepness kH/2
+```
+
+### Gravity–capillary
+
+```julia
+sol = solve(GCProblem(256, 0.002; ε_max=0.5))
+sol.Y; sol.F; sol.B; sol.kH2
+```
+
+### Viscous gravity–capillary
+
+```julia
+Mo  = 0.01^4 * 981.0 / 72.0^3
+sol = solve(ViscousGCProblem(256, 13_000.0, Mo; ε_max=0.4);
+            jacobian=:analytical, initial_state=:pure_gravity)
+sol.F; sol.P; sol.B; sol.Y
+```
+
+### Two-fluid interfacial  (ρ = ρ₁/ρ₂ < 1)
+
+```julia
+sol = solve(InterfacialStokesProblem(128, 0.9; h_max=2.2, nsteps=44))
+sol.c    # phase speed
+sol.h    # steepness h
+sol.a1   # upper-fluid Fourier coefficients
+sol.a2   # lower-fluid Fourier coefficients
+sol.c_n  # conformal-map coefficients
+```
+
+### Axisymmetric standing waves
+
+```julia
+using InterfacialWaves.AxiStandingWaves
+import OrdinaryDiffEq as ODE
+import NonlinearSolve as NLS
+
+mesh   = CylindricalBasin(1.0, 0.5; n_fe=4, Q=8, Q_wall=16, Q_bottom=16)
+solver = HOSESolver(mesh; order=3, gravity=9.81)
+
+res = continuation(solver, SingleShooting();
+        ν=5, kA_range=0.05:0.05:0.50,
+        integrator=DecoupledIntegrator(solver=ODE.RK4(), n_steps=256),
+        nl_alg=NLS.NewtonRaphson())
+
+T, dT, zeta = res(0.25)        # interpolate at kA = 0.25
+r = surface_nodes(mesh)
+```
+
+---
+
+## Linear stability
+
+All base states feed into a unified stability interface:
+
+```julia
+# Pure gravity (Longuet–Higgins convention, growth rate = Im(σ))
 stab   = LinearStabProblem(base_state=sol, m=1, n_choose=100)
 result = solve(stab)
-max_growth_rate(result)
+max_growth_rate(result)   # Im(σ)
 is_unstable(result)
+
+# Gravity–capillary / viscous / interfacial (growth rate = Re(σ))
+stab   = LinearStabProblem(base_state=sol, p=0.5, n_choose=60)
+result = solve(stab)
+max_growth_rate(result)   # Re(σ)
 ```
+
+| Base state | Floquet param | Growth rate | Convention |
+|---|---|---|---|
+| LH gravity | `m = 1, 2, ...` | `Im(σ) > 0` | `:lh` |
+| Gravity–capillary | `p ∈ [0, 1]` | `Re(σ) > 0` | `:gc` |
+| Viscous GC | `p ∈ [0, 1]` | `Re(σ) > 0` | `:gc` |
+| Interfacial | `p ∈ (0, 0.5]` | `Re(σ) > 0` | `:interfacial` |
+
+---
 
 ## Documentation
 
-Full documentation including formulation derivations, solver details, and API reference:
+Full documentation with formulation derivations, solver details, validated examples, and API reference:
 
 [![Docs](https://img.shields.io/badge/docs-stable-blue.svg)](https://yewalenikhil65.github.io/InterfacialWaves.jl/)
+
+---
 
 ## Citation
 
