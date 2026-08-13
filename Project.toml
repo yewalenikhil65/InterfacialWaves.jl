@@ -1,0 +1,38 @@
+name = "InterfacialWaves"
+uuid = "5cd20911-29fb-4fef-b53b-12d7df1cd65f"
+version = "0.1.0"
+authors = ["Nikhil Yewale <yewale.nikhil65@gmail.com>"]
+
+[deps]
+ApproxFun = "28f2ccd6-bb30-5033-b560-165f7b14dc2f"
+CommonSolve = "38540f10-b2f7-11e9-35d8-d573e4eb0ff2"
+DataInterpolations = "82cc6244-b520-54b8-b5a6-8a565e85f1d0"
+FFTW = "7a1cc6ca-52ef-59f5-83cd-3a7055c09341"
+FastGaussQuadrature = "442a2c76-b920-505d-bb47-c5924d526838"
+FastLevenbergMarquardt = "7a0df574-e128-4d35-8cbd-3d84502bf7ce"
+ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
+Integrals = "de52edbc-65ea-441a-8357-d3a637375a31"
+Krylov = "ba0b0d4f-ebba-5204-a429-3ac8c609bfb7"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
+NonlinearSolve = "8913a72c-1f9b-4ce2-8d82-65094dcecaec"
+OrdinaryDiffEq = "1dea7af3-3e70-54e6-95c3-0bf5283fa5ed"
+QuadGK = "1fd47b50-473d-5c70-9696-f719f8f3bcdc"
+SciMLSensitivity = "1ed8b502-d754-442c-8d5d-10ac956f44a1"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
+
+[compat]
+DataInterpolations = "9.2.0"
+FastGaussQuadrature = "1.3.0"
+Logging = "1.11.0"
+OrdinaryDiffEq = "7.3.0"
+QuadGK = "2.11.3"
+SciMLSensitivity = "7.117.0"
+SpecialFunctions = "2.8.3"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

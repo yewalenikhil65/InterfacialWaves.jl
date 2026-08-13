@@ -1,0 +1,30 @@
+# ── Private development notes ──────────────────────────────────────────────
+IMPLEMENTATION_NOTES.md
+INTERFACIAL_NOTES.md
+STANDING_WAVE_NOTES.md
+
+# ── Scripts and slides (not part of the public package) ────────────────────
+scripts/
+slides/
+
+# ── Large binaries / generated assets ──────────────────────────────────────
+*.gif
+*.png
+*.mp4
+# Exception: docs assets needed for README and documentation
+!docs/src/assets/logo.png
+!docs/src/assets/logo_anim.gif
+
+# ── Julia build artifacts ───────────────────────────────────────────────────
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+/docs/build/
+/docs/site/
+
+# ── OS / editor noise ───────────────────────────────────────────────────────
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
