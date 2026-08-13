@@ -201,6 +201,11 @@ default(fontfamily=plot_font, guidefontsize=16, tickfontsize=16,
     framestyle=:box, grid=false,
     fg_legend=false, background_color_legend=false)
 
+# recompute in case earlier block state is unavailable
+if !@isdefined(sol_09)
+    sol_09 = solve(InterfacialStokesProblem(128, 0.9; h_max=2.2, nsteps=44))
+end
+
 p_09 = plot(xlabel=L"x", ylabel=L"\eta",
     title=L"\rho_1/\rho_2 = 0.9", legend=:outertopright)
 
