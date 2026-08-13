@@ -12,13 +12,17 @@ A Julia package for computing exact nonlinear steady travelling-wave and standin
 
 ### Travelling waves
 
+All formulations use a **conformal-mapping collocation** discretization on a periodic grid.
+`LH()` and `Collocation()` are named dispatch tokens for the pure-gravity and GC solvers;
+`InterfacialStokesProblem` uses the same approach with two fluid layers and is invoked via `solve(prob)` directly.
+
 | Wave type | Problem | Key parameters | Solver |
 |---|---|---|---|
 | Pure gravity | `GravityProblem` | `N`, `ak` or `ε_max` | `LH()`, `Collocation()` |
 | Gravity–capillary | `GCProblem` | `N`, `B`, `ε_max` | `Collocation()` |
 | Viscous gravity–capillary | `ViscousGCProblem` | `N`, `Re`, `Mo`, `ε_max` | `Collocation()` |
 | Viscous GC fixed-B | `ViscousGCFixedBProblem` | `N`, `Re`, `B`, `ε_max` | `Collocation()` |
-| Two-fluid interfacial | `InterfacialStokesProblem` | `N`, `ρ=ρ₁/ρ₂`, `h_max` | `NewtonRaphson` |
+| Two-fluid interfacial | `InterfacialStokesProblem` | `N`, `ρ=ρ₁/ρ₂`, `h_max` | Conformal collocation + `NewtonRaphson` |
 
 ### Standing waves
 
