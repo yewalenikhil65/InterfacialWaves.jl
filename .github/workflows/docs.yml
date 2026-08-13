@@ -21,7 +21,7 @@ jobs:
 
       - uses: julia-actions/setup-julia@v2
         with:
-          version: "1.10"
+          version: "1.11"
 
       # Cache the Julia package depot — critical given the heavy dependency tree
       # (OrdinaryDiffEq, SciMLSensitivity, FFTW, etc.).
