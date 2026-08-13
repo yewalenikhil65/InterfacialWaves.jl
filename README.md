@@ -128,7 +128,23 @@ max_growth_rate(result)   # Re(σ)
 
 ---
 
-## Documentation
+## Academic research
+
+This package has been used in the following research (preprints under review):
+
+**Interfacial waves from pressure forcing: revisiting classical theories from an IVP perspective**
+V. K. Kadari, N. Yewale, P. K. Farsoiya, Y. S. Mayya, R. Dasgupta (2026)
+*arXiv:2605.12254* · [https://arxiv.org/abs/2605.12254](https://arxiv.org/abs/2605.12254)
+
+> Uses the gravity–capillary and two-fluid interfacial wave solvers to validate steady nonlinear wave profiles and dispersion relationships against IVP-based predictions for pressure-forced interfacial waves.
+
+**A windy sea surface with Stokes waves**
+N. Yewale, A. Kumar, V. Kadari, R. Dasgupta (2026)
+*arXiv:2608.03657* · [https://arxiv.org/abs/2608.03657](https://arxiv.org/abs/2608.03657)
+
+> Uses the viscous gravity–capillary wave solver and subharmonic Floquet stability analysis to construct a Reynolds number–wave energy phase-space regime map distinguishing smooth from corrugated (non-smooth) steady-state solutions for wind-forced gravity–capillary waves (4–13 cm).
+
+---
 
 Full documentation with formulation derivations, solver details, validated examples, and API reference:
 
