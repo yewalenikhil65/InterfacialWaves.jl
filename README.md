@@ -6,8 +6,6 @@
 
 A Julia package for computing exact nonlinear steady travelling-wave and standing-wave solutions, and their linear stability, for a range of fluid configurations.
 
----
-
 ## Wave types
 
 ### Travelling waves
@@ -146,12 +144,6 @@ N. Yewale, A. Kumar, V. Kadari, R. Dasgupta (2026)
 
 ---
 
-Full documentation with formulation derivations, solver details, validated examples, and API reference:
-
-[![Docs](https://img.shields.io/badge/docs-stable-blue.svg)](https://yewalenikhil65.github.io/InterfacialWaves.jl/)
-
----
-
 ## Citation
 
 ```bibtex
@@ -164,3 +156,4 @@ Full documentation with formulation derivations, solver details, validated examp
   note    = {Julia package, v0.1.0},
 }
 ```
+
