@@ -6,6 +6,29 @@
 
 A Julia package for computing exact nonlinear steady travelling-wave and standing-wave solutions, and their linear stability, for a range of fluid configurations.
 
+## Installation
+
+The current version on GitHub is **v0.1.0**. Install the package directly from the GitHub repository using Julia's package manager:
+
+```julia
+using Pkg
+Pkg.add(url="https://github.com/yewalenikhil65/InterfacialWaves.jl.git")
+```
+
+Or, from the Julia package prompt (`]`):
+
+```text
+add https://github.com/yewalenikhil65/InterfacialWaves.jl.git
+```
+
+Then load the package with:
+
+```julia
+using InterfacialWaves
+```
+
+---
+
 ## Wave types
 
 ### Travelling waves
