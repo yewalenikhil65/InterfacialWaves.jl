@@ -6,6 +6,8 @@
 
 A Julia package for computing exact nonlinear steady travelling-wave and standing-wave solutions, and their linear stability, for a range of fluid configurations.
 
+A short talk introducing this package was presented on 13th August 2026 at JuliaCon Global 2026
+[![Watch the video](https://img.youtube.com/vi/QPM6CTclOr0/maxresdefault.jpg)](https://www.youtube.com/watch?v=QPM6CTclOr0)
 ## Installation
 
 The current version on GitHub is **v0.1.0**. Install the package directly from the GitHub repository using Julia's package manager:
